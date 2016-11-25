@@ -2,7 +2,7 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.issues</groupId>
-	<artifactId>SPR-0000-war-xml</artifactId>
+	<artifactId>SPR-14596</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>Spring MVC Issue Reproduction Project</name>
 	<packaging>war</packaging>
@@ -10,7 +10,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.6</java.version>
-		<spring.version>4.3.1.RELEASE</spring.version>
+		<spring.version>4.3.3.RELEASE</spring.version>
 		<slf4j.version>1.7.21</slf4j.version>
 		<tomcat.version>8.0.36</tomcat.version>
 	</properties>
@@ -34,6 +34,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+
 
 		<!-- Logging -->
 		<dependency>
@@ -159,6 +160,17 @@
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${spring.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.hamcrest</groupId>
+			<artifactId>hamcrest-all</artifactId>
+			<version>1.3</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -224,15 +236,12 @@
 						<properties>
 							<cargo.servlet.port>8080</cargo.servlet.port>
 							<cargo.logging>medium</cargo.logging>
-							<cargo.jvmargs>-Xms96m -Xmx512m -Djava.awt.headless=true</cargo.jvmargs>
-							<!--
 							<cargo.jvmargs>
 								-Xdebug
 								-Xrunjdwp:transport=dt_socket,address=8000,suspend=n,server=y
 								-Xnoagent
 								-Djava.compiler=NONE
 							</cargo.jvmargs>
-							-->
 						</properties>
 					</configuration>
 					<container>

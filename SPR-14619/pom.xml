@@ -2,7 +2,7 @@
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.springframework.issues</groupId>
-	<artifactId>SPR-0000-war-xml</artifactId>
+	<artifactId>SPR-14619</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>Spring MVC Issue Reproduction Project</name>
 	<packaging>war</packaging>
@@ -224,15 +224,12 @@
 						<properties>
 							<cargo.servlet.port>8080</cargo.servlet.port>
 							<cargo.logging>medium</cargo.logging>
-							<cargo.jvmargs>-Xms96m -Xmx512m -Djava.awt.headless=true</cargo.jvmargs>
-							<!--
 							<cargo.jvmargs>
 								-Xdebug
 								-Xrunjdwp:transport=dt_socket,address=8000,suspend=n,server=y
 								-Xnoagent
 								-Djava.compiler=NONE
 							</cargo.jvmargs>
-							-->
 						</properties>
 					</configuration>
 					<container>
