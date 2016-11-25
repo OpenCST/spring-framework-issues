@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<b:beans xmlns="http://www.springframework.org/schema/security" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:b="http://www.springframework.org/schema/beans"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-4.3.xsd
+            http://www.springframework.org/schema/util
+            http://www.springframework.org/schema/util/spring-util-4.3.xsd
+            http://www.springframework.org/schema/tx
+            http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
+            http://www.springframework.org/schema/aop
+            http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
+            http://www.springframework.org/schema/security
+            http://www.springframework.org/schema/security/spring-security-4.2.xsd"
+>
+
+
+    <http auto-config="false" use-expressions="true">
+
+        <headers>
+            <xss-protection />
+            <hsts />
+            <frame-options policy="SAMEORIGIN" />
+        </headers>
+
+        <intercept-url pattern="/login*" access="permitAll" />
+        <intercept-url pattern="/secure/admin/**" access="isAuthenticated()" />
+        <intercept-url pattern="/secure/**" access="isAuthenticated()" />
+        <intercept-url pattern="/logout" access="permitAll" />
+
+        <http-basic />
+        <form-login login-page="/login" default-target-url="/secure" authentication-failure-url="/login?login_error=1" always-use-default-target="false" />
+
+        <logout invalidate-session="true" logout-url="/logout" logout-success-url="/" />
+
+        <csrf disabled="false" />
+        <session-management invalid-session-url="/login" session-fixation-protection="migrateSession">
+            <concurrency-control expired-url="/login" />
+        </session-management>
+    </http>
+
+    <authentication-manager>
+        <authentication-provider>
+            <user-service>
+                <user name="user" password="password" authorities="ROLE_USER" />
+            </user-service>
+        </authentication-provider>
+    </authentication-manager>
+</b:beans>
